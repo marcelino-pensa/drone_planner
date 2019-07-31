@@ -1,0 +1,38 @@
+# initial_point: initial position in cartesian coordinates (meters)
+# final_point: final position in cartesian coordinates (meters)
+# max_vel: maximum allowed velocity (meters/sec)
+# max_acc: maximum allowed acceleration (meters/sec^2)
+# initial_yaw: initial heading angle (radians)
+# final_yaw: final heading angle (radians)
+# max_yaw_vel: maximum allowed yaw rate (rad/sec)
+# max_yaw_accel: maximum allower yaw acceleration (rad/sec^2)
+# sleep_after_traj: time that the action should sleep after finishing the trajectory
+# publish_freq: frequency at which the trajectory should be published to px4
+
+# success: result of the action
+
+# current_position: last published position
+# current_yaw: last published heading angle
+# current_time: time in the trajectory
+# final_time: final time in the trajectory
+
+#goal definition
+geometry_msgs/Point initial_point
+geometry_msgs/Point final_point
+float32 max_vel
+float32 max_acc
+float32 initial_yaw
+float32 final_yaw
+float32 max_yaw_vel
+float32 max_yaw_accel
+float32 sleep_after_traj
+float32 publish_freq
+---
+#result definition
+bool success
+---
+#feedback
+geometry_msgs/Point current_position
+float32 current_yaw
+float32 current_time
+float32 final_time

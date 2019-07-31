@@ -1,0 +1,10 @@
+# Service for drone_planner to start/stop publishing pose
+# references into px4
+
+# When the parameter publish_pose is set to true, the publisher
+# will publish the pose related to pos_ref and yaw_ref
+bool publish_pose
+geometry_msgs/Point pos_ref
+float32 yaw_ref
+---
+bool success

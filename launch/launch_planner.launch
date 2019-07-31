@@ -1,0 +1,7 @@
+<launch>
+
+  <node pkg="drone_planner" type="drone_planner_node" name="drone_planner" output="screen" required = "true">  </node>
+
+  <node name="visualization" pkg="rviz" type="rviz" output="log" args="-d $(find drone_planner)/launch/rviz/rviz_config.rviz" />
+
+</launch>

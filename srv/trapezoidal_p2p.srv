@@ -1,0 +1,33 @@
+# This service is used to call trapezoidal point to point trajectories
+# starting from rest and finishing at rest
+
+# init_pos: initial position in cartesian coordinates (meters)
+# final_pos: final position in cartesian coordinates (meters)
+# max_vel: maximum velocity (m/s)
+# max_acc: maximum acceleration (m/s^2)
+
+# init_yaw: initial yaw (rad)
+# final_yaw: final yaw (rad)
+# max_yaw_vel: maximum yaw rate (rad/sec)
+# max_yaw_acc: maximum yaw angular acceleration (rad/sec^2)
+
+# sampling_freq: sampling frequency of the output
+# set visualize_output to true to see a "real-time" visualization of the trajectory in Rviz (debug purposes)
+
+# pva_vec returns timestamped position, velocity and acceleration throughout the computed trajectory
+# final_time returns the time of flight. Returns a negative number if the solver could not compute a trajectory successfully. 
+geometry_msgs/Point init_pos
+geometry_msgs/Point final_pos
+float32 max_vel
+float32 max_acc
+
+float32 init_yaw
+float32 final_yaw
+float32 max_yaw_vel
+float32 max_yaw_acc
+
+float32 sampling_freq
+bool visualize_output
+---
+drone_planner/PVA_4d[] pva_vec
+float32 final_time
