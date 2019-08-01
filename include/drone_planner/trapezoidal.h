@@ -18,6 +18,16 @@ namespace trapezoidal {
 //       ----'-----------------'---------
 //      0   t_up_down              tf
 
+void time_from_displacements(
+		const std::vector<double> &cumulative_displacement,
+		const double &max_vel, const double &max_acc,
+		std::vector<double> *times);
+
+void time_from_waypoints(
+		const std::vector<geometry_msgs::Point> &waypoints,
+		const double &max_vel, const double &max_acc,
+		std::vector<double> *times);
+
 class planner_1d {
 	double final_displacement_, max_vel_, max_acc_, final_time_;
 	double init_pos_, final_pos_;

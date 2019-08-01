@@ -16,6 +16,11 @@ TrajPublisher::TrajPublisher(ros::NodeHandle *nh) {
     vis_vel_pub_     = nh->advertise<visualization_msgs::Marker>("desired_velocity", 1);    
     vis_acc_pub_     = nh->advertise<visualization_msgs::Marker>("desired_acceleration", 1);
     vis_yaw_pub_     = nh->advertise<visualization_msgs::Marker>("desired_yaw", 1);
+    ROS_INFO("[drone_planner] Spatial trajectory marker publisher: %s", wp_traj_vis_pub_.getTopic().c_str());
+    ROS_INFO("[drone_planner] Position marker publisher: %s", vis_pos_pub_.getTopic().c_str());
+    ROS_INFO("[drone_planner] Velocity marker publisher: %s", vis_vel_pub_.getTopic().c_str());
+    ROS_INFO("[drone_planner] Acceleration marker publisher: %s", vis_acc_pub_.getTopic().c_str());
+    ROS_INFO("[drone_planner] Yaw marker publisher: %s", vis_yaw_pub_.getTopic().c_str());
 
     // Set the structures for the path publishers
     vis_pos_.id = vis_vel_.id = vis_acc_.id = 0;
@@ -211,19 +216,19 @@ void TrajPublisher::PubYaw_Marker(const geometry_msgs::Point &pos,
     vis_yaw_pub_.publish(vis_yaw_);
 }
 
-// void TrajPublisher::PubRealTimeTraj(const std::vector<p4_ros::PVA> &pva_vec,
-//                                     const double &sampling_freq,
-//                                     const double &final_time) {
-//     ROS_INFO("[p4_services] Publishing trajectory...");
-//     ros::Rate rate(sampling_freq);
-//     for (uint i = 0; i < pva_vec.size(); i++) {
-//         p4_ros::PVA cur_pva = pva_vec[i];
-//         printf("\rPublishing trajectory for time %4.2f/%4.2f sec", cur_pva.time, final_time);
-//         this->PubPVA_Markers(cur_pva.pos, cur_pva.vel, cur_pva.acc);
-//         rate.sleep();
-//     }
-//     printf("\n\r");
-// }
+void TrajPublisher::PubRealTimeTraj(const std::vector<drone_planner::PVA> &pva_vec,
+                                    const double &sampling_freq,
+                                    const double &final_time) {
+    ROS_INFO("[p4_services] Publishing trajectory...");
+    ros::Rate rate(sampling_freq);
+    for (uint i = 0; i < pva_vec.size(); i++) {
+        drone_planner::PVA cur_pva = pva_vec[i];
+        printf("\rPublishing trajectory for time %4.2f/%4.2f sec", cur_pva.time, final_time);
+        this->PubPVA_Markers(cur_pva.pos, cur_pva.vel, cur_pva.acc);
+        rate.sleep();
+    }
+    printf("\n\r");
+}
 
 void TrajPublisher::PubRealTimeTraj(const std::vector<drone_planner::PVA_4d> &pva_vec,
                                     const double &sampling_freq,
@@ -241,7 +246,7 @@ void TrajPublisher::PubRealTimeTraj(const std::vector<drone_planner::PVA_4d> &pv
     printf("\n\r");
 }
 
-// void TrajPublisher::plot_results_gnuplot(const std::vector<p4_ros::PVA> &pva_vec) {
+// void TrajPublisher::plot_results_gnuplot(const std::vector<drone_planner::PVA> &pva_vec) {
 //     {
 //         std::vector<double> t_hist, x_hist, y_hist, z_hist;
 //         for (uint i = 0; i < pva_vec.size(); i++) {

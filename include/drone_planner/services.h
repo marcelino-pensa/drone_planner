@@ -3,11 +3,21 @@
 
 #include "ros/ros.h"
 
+// Local libraries
+#include "drone_planner/helper.h"
+
+// Library that solves min vel/acc/jerk/snap trajectories
+#include "drone_planner/p4_helper.h"
+
 // Library that solves trapezoidal trajectories
 #include "drone_planner/trapezoidal.h"
 
+// Library that solves minimum time problems
+#include "drone_planner/time_optimizer_class.h"
+
 // Message/service types
 #include "drone_planner/trapezoidal_p2p.h"
+#include "drone_planner/min_time.h"
 #include "drone_planner/PVA_4d.h"
 
 // Ros message types
@@ -22,17 +32,13 @@ class ServicesClass {
 
 	bool trapezoidal_service(drone_planner::trapezoidal_p2p::Request  &req,
 	                         drone_planner::trapezoidal_p2p::Response &res);
+	bool min_time_service(drone_planner::min_time::Request  &req,
+	                      drone_planner::min_time::Response &res);
 
  private:
  	ros::NodeHandle *nh_;
-	ros::ServiceServer trapezoidal_srv;
+	ros::ServiceServer min_time_srv, trapezoidal_srv;
 	visualization::TrajPublisher traj_pub_obj;
-
-	drone_planner::PVA_4d constuct_PVA (const Eigen::Vector3d &pos,
-				                        const Eigen::Vector3d &vel,
-				                        const Eigen::Vector3d &acc,
-				                        const double &yaw, const double &yaw_vel,
-				                        const double &yaw_acc, const double &time);
 };
 
 }  // namespace planner

@@ -1,0 +1,19 @@
+# This service is used to call minimum-time trajectories starting from rest and finishing at rest
+# corridor_width (meters) imposes corridor contraints between every two waypoints
+# max_vel (m/s) imposes maximum velocity
+# max_acc (m/s^2) imposes maximum acceleration
+# max_jerk (m/s^3) imposes maximum jerk
+# sampling_freq (hz) has the sampling frequency of the output
+# set visualize_output to true to see a "real-time" visualization of the trajectory in Rviz
+# pva_vec returns timestamped position, velocity and acceleration throughout the computed trajectory
+# final_time (sec) returns the time of flight. Returns a negative number if the solver could not compute a trajectory successfully. 
+geometry_msgs/Point[] pos_array
+float32 corridor_width
+float32 max_vel
+float32 max_acc
+float32 max_jerk
+float32 sampling_freq
+bool visualize_output
+---
+drone_planner/PVA[] pva_vec
+float32 final_time

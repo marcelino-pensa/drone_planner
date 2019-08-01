@@ -12,6 +12,9 @@
 #include <drone_planner/trapezoidal_p2p.h>
 #include <drone_planner/publish_pose.h>
 
+// Helper library
+#include <drone_planner/helper.h>
+
 // POSIX-style event signaling library
 #include <pevents/pevents.h>
 
@@ -41,8 +44,8 @@ public:
 
   ~trapezoidal_p2pAction(void);
 
-  geometry_msgs::PoseStamped set_pose(
-      const geometry_msgs::Point &pos, const double &yaw);
+  // geometry_msgs::PoseStamped set_pose(
+  //     const geometry_msgs::Point &pos, const double &yaw);
 
   void executeCB(const drone_planner::trapezoidal_p2pGoalConstPtr &goal);
 

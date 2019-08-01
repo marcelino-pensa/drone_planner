@@ -18,18 +18,18 @@ trapezoidal_p2pAction::trapezoidal_p2pAction(std::string name) :
     h_pub_thread_.join();
   }
 
-  geometry_msgs::PoseStamped trapezoidal_p2pAction::set_pose(
-      const geometry_msgs::Point &pos, const double &yaw) {
-    geometry_msgs::PoseStamped pose;
-    pose.header.stamp = ros::Time::now();
-    pose.header.frame_id = "fcu";
-    pose.pose.position = pos;
-    pose.pose.orientation.w = cos(yaw/2.0);
-    pose.pose.orientation.x = 0.0;
-    pose.pose.orientation.y = 0.0;
-    pose.pose.orientation.z = sin(yaw/2.0);
-    return pose;
-  }
+  // geometry_msgs::PoseStamped trapezoidal_p2pAction::set_pose(
+  //     const geometry_msgs::Point &pos, const double &yaw) {
+  //   geometry_msgs::PoseStamped pose;
+  //   pose.header.stamp = ros::Time::now();
+  //   pose.header.frame_id = "fcu";
+  //   pose.pose.position = pos;
+  //   pose.pose.orientation.w = cos(yaw/2.0);
+  //   pose.pose.orientation.x = 0.0;
+  //   pose.pose.orientation.y = 0.0;
+  //   pose.pose.orientation.z = sin(yaw/2.0);
+  //   return pose;
+  // }
 
   void trapezoidal_p2pAction::executeCB(const drone_planner::trapezoidal_p2pGoalConstPtr &goal) {
     // Boolean for success
@@ -109,7 +109,7 @@ trapezoidal_p2pAction::trapezoidal_p2pAction(std::string name) :
 
       // Send pose to px4
       m_pose_.lock();
-        cur_pose_ = this->set_pose(pva_vec[i].pos, pva_vec[i].yaw);
+        cur_pose_ = helper::set_pose(pva_vec[i].pos, pva_vec[i].yaw);
         cur_pose_.header.seq = i;
       m_pose_.unlock();
 
@@ -156,7 +156,7 @@ trapezoidal_p2pAction::trapezoidal_p2pAction(std::string name) :
       ROS_INFO("Requested to keep publishing pose!");
       // Send pose to px4
       m_pose_.lock();
-        cur_pose_ = this->set_pose(req.pos_ref, req.yaw_ref);
+        cur_pose_ = helper::set_pose(req.pos_ref, req.yaw_ref);
       m_pose_.unlock();
       SetEvent(e_publish_pose_);
     } else {

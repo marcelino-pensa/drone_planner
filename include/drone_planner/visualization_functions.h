@@ -6,11 +6,11 @@
 
 // Ros message types
 #include <visualization_msgs/Marker.h>
-// #include "p4_ros/PVA.h"
+#include "drone_planner/PVA.h"
 #include "drone_planner/PVA_4d.h"
 
 // Gnuplot for plotting results
-// #include "gnuplot-iostream.h"
+// #include "../examples/gnuplot-iostream.h"
 
 namespace visualization {
 
@@ -54,15 +54,15 @@ class TrajPublisher {
                       const geometry_msgs::Vector3 &acc);
  	void PubYaw_Marker(const geometry_msgs::Point &pos, 
                      const double &yaw);
- 	// void PubRealTimeTraj(const std::vector<p4_ros::PVA> &pva_vec,
- 	// 	                 const double &sampling_freq,
- 	// 	                 const double &final_time);
+ 	void PubRealTimeTraj(const std::vector<drone_planner::PVA> &pva_vec,
+ 		                 const double &sampling_freq,
+ 		                 const double &final_time);
  	void PubRealTimeTraj(const std::vector<drone_planner::PVA_4d> &pva_vec,
                        const double &sampling_freq,
                        const double &final_time);
  	Eigen::Vector3d getPosPoly(const Eigen::MatrixXd &polyCoeff, const int &k,
  					           const double &t, const uint &n_coeff);
- 	// void plot_results_gnuplot(const std::vector<p4_ros::PVA> &pva_vec);
+ 	// void plot_results_gnuplot(const std::vector<drone_planner::PVA> &pva_vec);
 
  private:
  	double vis_traj_width_, yaw_vec_length_;

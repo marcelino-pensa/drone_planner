@@ -1,0 +1,9 @@
+[submodule "dependencies/ecos"]
+	path = dependencies/ecos
+	url = git@github.com:Pensasystems/ecos.git
+[submodule "dependencies/P4"]
+	path = dependencies/P4
+	url = git@github.com:Pensasystems/P4.git
+[submodule "dependencies/TimeOptimizer"]
+	path = dependencies/TimeOptimizer
+	url = git@github.com:Pensasystems/TimeOptimizer.git
