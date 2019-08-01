@@ -9,7 +9,7 @@ Motion planner solutions for quadcopters.
 ```
 cd ~/catkin_ws/src
 git clone --recursive https://github.com/marcelino-pensa/drone_planner
-``
+```
 
 If you don't need the minimum time motion planner, just run ```catkin_make``` in ```~/catkin_ws```. Otherwise, do the following:
 
