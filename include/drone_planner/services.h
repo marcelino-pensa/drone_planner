@@ -1,19 +1,13 @@
-#ifndef DRONE_PLANNER_H_
-#define DRONE_PLANNER_H_
+#ifndef DRONE_PLANNER_SERVICES_H_
+#define DRONE_PLANNER_SERVICES_H_
 
 #include "ros/ros.h"
 
 // Local libraries
 #include "drone_planner/helper.h"
 
-// Library that solves min vel/acc/jerk/snap trajectories
-#include "drone_planner/p4_helper.h"
-
 // Library that solves trapezoidal trajectories
 #include "drone_planner/trapezoidal.h"
-
-// Library that solves minimum time problems
-#include "drone_planner/time_optimizer_class.h"
 
 // Message/service types
 #include "drone_planner/trapezoidal_p2p.h"
@@ -43,4 +37,4 @@ class ServicesClass {
 
 }  // namespace planner
 
-#endif  // DRONE_PLANNER_H_
+#endif  // DRONE_PLANNER_SERVICES_H_
